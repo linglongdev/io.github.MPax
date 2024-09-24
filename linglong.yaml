@@ -1,0 +1,30 @@
+version: "1"
+
+package:
+  id: io.github.MPax
+  name: MPax
+  version: 1.5.0.1
+  kind: app
+  description: |
+    A simple and easy-to-use music player. 简约易用的音乐播放器
+
+command:
+  - /opt/apps/io.github.MPax/files/bin/MPax
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/realth000/MPax.git
+    version: master
+    commit: 1b3f030bb2c1bdd537dc91dd91679082ca8b6cd0
+
+build: |
+  cd /project/linglong/sources/MPax.git
+  git apply ../../../0001-install.patch
+  mkdir -p build
+  cd build
+  cmake .. \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX}
+  cmake --build . --target install -j$(nproc --all)
