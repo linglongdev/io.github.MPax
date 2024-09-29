@@ -1,0 +1,51 @@
+From 429f37724d2c9cad9ccae45de8dcf6ef36c07998 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Mon, 16 Sep 2024 16:35:40 +0800
+Subject: [PATCH] install
+
+---
+ CMakeLists.txt                | 10 +++++++++-
+ packaging/assets/mpax.desktop |  4 ++--
+ 2 files changed, 11 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e2d8a5f..7e6babc 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-﻿cmake_minimum_required(VERSION 3.13)
++cmake_minimum_required(VERSION 3.13)
+ 
+ project(MPax VERSION 1.5.0 LANGUAGES C CXX)
+ 
+@@ -166,3 +166,11 @@ if (GIT_FOUND)
+ else ()
+     message(WARNING "Git not found")
+ endif ()
++install(TARGETS ${PROJECT_NAME}
++             DESTINATION bin)
++
++install(FILES resource/pic/logo/MPax@4x.png
++        DESTINATION share/icons)
++
++install(FILES packaging/assets/mpax.desktop
++            DESTINATION share/applications)
+\ No newline at end of file
+diff --git a/packaging/assets/mpax.desktop b/packaging/assets/mpax.desktop
+index 9bf3fda..a6fc7ce 100755
+--- a/packaging/assets/mpax.desktop
++++ b/packaging/assets/mpax.desktop
+@@ -2,8 +2,8 @@
+ Version=1.0
+ Name=MPax
+ Comment=MPax music player
+-Exec=/opt/MPax/MPax
+-Icon=/opt/MPax/MPax.svg
++Exec=MPax
++Icon=MPax@4x
+ Type=Application
+ Categories=Audio;
+ Terminal=false
+-- 
+2.43.4
+
